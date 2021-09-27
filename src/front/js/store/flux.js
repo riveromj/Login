@@ -61,6 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => {
 						if (res.status == 404) {
+							alert("error");
 							/* setError({ msg: "User not exist", status: true });
 							setSpinner(false); */
 						}

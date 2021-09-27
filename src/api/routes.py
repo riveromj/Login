@@ -7,6 +7,8 @@ from api.utils import generate_sitemap, APIException
 import os
 #JWT
 from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -22,13 +24,13 @@ def handle_register():
     return jsonify(access_token=access_token),200
 
 @api.route('/users', methods=['GET'])
+
 def handle_user():
     users = User.query.all()     
     return jsonify(list(map(lambda user: user.serialize(), users))),200
 
 @api.route('/login', methods=['POST'])
 def handle_login():
-        
     body = request.get_json()
     print(body) 
     password =body['password']   
@@ -38,3 +40,9 @@ def handle_login():
     access_token = create_access_token(identity=user.email)
     return jsonify(access_token=access_token),200
     
+@api.route("/protected", methods=["GET"])
+@jwt_required()
+def protected():
+    # Access the identity of the current user with get_jwt_identity
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
