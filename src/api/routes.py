@@ -8,20 +8,29 @@ from api.utils import generate_sitemap, APIException
 api = Blueprint('api', __name__)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
+@api.route('/register/user', methods=['POST'])
+def handle_register():
+    body = request.get_json()
+    if body:
+        new_user = User(email = body['email'], password = body['password'],name = body['name'],surname = body['surname'], is_active=True)
+        db.session.add(new_user)
+        db.session.commit()
     response_body = {
-        "message": "Hello! I'm a message that came from the backend"
+        "message": "user successfully"
     }
 
     return jsonify(response_body), 200
 
 @api.route('/users', methods=['GET'])
 def handle_user():
-    new_list_users=[]
     users = User.query.all()     
-    for user in users:
-        new_list_users.append(user.serialize())
-    return jsonify(new_list_users),200
-      
+    return jsonify(list(map(lambda user: user.serialize(), users))),200
+
+@api.route('/login', methods=['POST'])
+def handle_login():
+    body = request.get_json()
+    response_body = {
+        "message": "user successfully"
+    }
+
+    return jsonify(response_body), 200
