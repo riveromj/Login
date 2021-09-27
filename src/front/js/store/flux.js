@@ -49,6 +49,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(data);
 					})
 					.catch(error => console.log(error));
+			},
+			login: (user, props) => {
+				console.log(props, "********");
+				fetch(url + "/api/login", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => {
+						if (res.status == 404) {
+							/* setError({ msg: "User not exist", status: true });
+							setSpinner(false); */
+						}
+						if (res.status == 401) {
+							/* setError({ msg: "Invalid username or password", status: true });
+							setSpinner(false); */
+						}
+						if (res.status == 500) {
+							/* setError({ msg: "try again later", status: true });
+							setSpinner(false); */
+						}
+						return res.json();
+					})
+					.then(data => {
+						localStorage.setItem("token", data.access_token);
+						/* localStorage.setItem("token", data.access_token);
+						props.history.push("/");
+						setStore({ pathName: "/" }); */
+					})
+					.catch(error => {
+						console.log(error, "ESTOY EN CATCH");
+						/* setError({ msg: "serve error try later", status: true });
+						setSpinner(false); */
+					});
 			}
 		}
 	};
