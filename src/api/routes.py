@@ -20,7 +20,7 @@ def handle_register():
         new_user = User(email = body['email'], password = body['password'],name = body['name'],surname = body['surname'], is_active=True)
         db.session.add(new_user)
         db.session.commit()
-    access_token = create_access_token(identity=user.email)
+    access_token = create_access_token(identity=new_user.email)
     return jsonify(access_token=access_token),200
 
 @api.route('/users', methods=['GET'])
