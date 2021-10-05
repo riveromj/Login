@@ -21,7 +21,7 @@ def handle_register():
     print(pass_encrypt)
 
     if body:
-        new_user = User(email = body['email'], password = body['password'],name = body['name'],surname = body['surname'], is_active=True)
+        new_user = User(email = body['email'], password = pass_encrypt ,name = body['name'],surname = body['surname'], is_active=True)
         db.session.add(new_user)
         db.session.commit()
     access_token = create_access_token(identity=new_user.email)

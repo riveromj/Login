@@ -1,7 +1,7 @@
 import bcrypt
 
 def encrypted_pass(password):
-    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(10))
+    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode()
     return hashed
 
 def compare_pass(password, hashed_password):
