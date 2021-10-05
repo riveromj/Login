@@ -9,6 +9,7 @@ import os
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
+from api.encrypted import encrypted_pass, compare_pass
 
 api = Blueprint('api', __name__)
 
@@ -16,6 +17,9 @@ api = Blueprint('api', __name__)
 @api.route('/register/user', methods=['POST'])
 def handle_register():
     body = request.get_json()
+    pass_encrypt = encrypted_pass(body['password'])
+    print(pass_encrypt)
+
     if body:
         new_user = User(email = body['email'], password = body['password'],name = body['name'],surname = body['surname'], is_active=True)
         db.session.add(new_user)
