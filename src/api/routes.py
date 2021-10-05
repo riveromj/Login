@@ -36,13 +36,15 @@ def handle_user():
 @api.route('/login', methods=['POST'])
 def handle_login():
     body = request.get_json()
-    print(body) 
-    password =body['password']   
+    print(body)    
     user = User.query.filter_by(email=body['email']).first()   
-    if(user is None or user.password != password):
+    if(user is None):
         return "user not exist or invalid password", 404
+    validate_password = compare_pass(body['password'], user.password_bcrypt())
+    if (validate_password == False):
+        return "password incorrect", 401
     access_token = create_access_token(identity=user.email)
-    return jsonify(access_token=access_token),200
+    return jsonify({"access_token": access_token}),200
     
 @api.route("/protected", methods=["GET"])
 @jwt_required()

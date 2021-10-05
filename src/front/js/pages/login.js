@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import PropsType from "prop-types";
+import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.scss";
 
 const Login = props => {
-	console.log(props, "///////");
 	const { store, actions } = useContext(Context);
 	const [user, setUser] = useState({
 		email: "",
@@ -17,7 +16,6 @@ const Login = props => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		console.log("login al usuario");
 		actions.login(user, props);
 	};
 
@@ -67,7 +65,7 @@ const Login = props => {
 		</div>
 	);
 };
-Login.propsType = {
-	history: PropsType.object
+Login.propTypes = {
+	props: PropTypes.any
 };
 export default Login;

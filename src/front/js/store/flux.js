@@ -33,6 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 					.then(res => {
 						if (res.status == 409) {
+							console.log(res, "regitro de usuario");
 							/* setError({ msg: "User Name or email exist", status: true });
 							setSpinner(false);
 							return; */
@@ -45,13 +46,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return res.json();
 					})
 					.then(data => {
-						props.history.push("/");
+						//props.history.push("/");
 						console.log(data);
 					})
 					.catch(error => console.log(error));
 			},
 			login: (user, props) => {
-				console.log(props, "********");
+				console.log(props, "////");
 				fetch(url + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -77,9 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						localStorage.setItem("token", data.access_token);
-						/* localStorage.setItem("token", data.access_token);
 						props.history.push("/");
-						setStore({ pathName: "/" }); */
 					})
 					.catch(error => {
 						console.log(error, "ESTOY EN CATCH");

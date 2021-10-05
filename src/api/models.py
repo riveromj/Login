@@ -19,5 +19,7 @@ class User(db.Model):
             "email": self.email,
             "name": self.name,
             "surname": self.surname,
-            # do not serialize the password, its a security breach
         }
+
+    def password_bcrypt(self):
+        return self.password  
