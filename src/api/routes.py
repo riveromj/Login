@@ -44,7 +44,7 @@ def handle_login():
     if (validate_password == False):
         return "password incorrect", 401
     access_token = create_access_token(identity=user.email)
-    return jsonify({"access_token": access_token}),200
+    return jsonify({"access_token": access_token, "user":body['email']}),200
     
 @api.route("/protected", methods=["GET"])
 @jwt_required()
