@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
@@ -18,6 +18,9 @@ const Login = props => {
 		event.preventDefault();
 		actions.login(user, props);
 	};
+	useEffect(() => {
+		actions.setPathName("/login");
+	}, []);
 
 	return (
 		<div className="container">

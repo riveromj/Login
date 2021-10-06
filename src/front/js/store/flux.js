@@ -2,13 +2,18 @@ const url = process.env.BACKEND_URL;
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			users: []
+			users: [],
+			user: [],
+			pathName: "/"
 		},
 		actions: {
+			setPathName: path => {
+				setStore({ pathName: path });
+			},
 			///get user
 			getUser: () => {
 				//const token = localStorage.getItem("token");
-				fetch(process.env.BACKEND_URL + "/api/users", {
+				fetch(url + "/api/users", {
 					method: "GET"
 					//headers: { Authorization: " Bearer " + token }
 				})
@@ -24,7 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: user.email,
 					password: user.password
 				};
-				fetch(process.env.BACKEND_URL + "/api/register/user", {
+				fetch(url + "/api/register/user", {
 					method: "POST",
 					body: JSON.stringify(new_user),
 					headers: {
@@ -52,7 +57,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log(error));
 			},
 			login: (user, props) => {
-				console.log(props, "////");
 				fetch(url + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -61,6 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(res => {
+						console.log(res.status, "Status loagin");
 						if (res.status == 404) {
 							alert("error");
 							/* setError({ msg: "User not exist", status: true });
@@ -78,6 +83,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						localStorage.setItem("token", data.access_token);
+						sessionStorage.setItem("user", data.user);
+						setStore({ pathName: "/login" });
 						props.history.push("/");
 					})
 					.catch(error => {

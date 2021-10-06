@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
@@ -38,6 +37,9 @@ export const Signup = () => {
 
 		//actions.registerUser(user, props, setError, setSpinner);
 	};
+	useEffect(() => {
+		actions.setPathName("/signup");
+	}, []);
 
 	return (
 		<div className="container">

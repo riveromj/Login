@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useContext } from "react";
-export const Navbar = () => {
+
+export const NavUser = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store, "$$$$$");
 	return (
@@ -12,16 +13,6 @@ export const Navbar = () => {
 			</Link>
 			<div className="ml-auto">
 				<span>{store.user}</span>
-				<Link to="/login">
-					<button className="btn btn-primary">Login</button>
-				</Link>
-			</div>
-			<div>
-				<Link to="/signup">
-					<button type="button" className="btn btn-primary">
-						Signup
-					</button>
-				</Link>
 			</div>
 		</nav>
 	);
