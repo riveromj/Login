@@ -56,7 +56,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log(error));
 			},
-			login: (user, props) => {
+			login: (user, props, setMessageError, setSpinner) => {
 				fetch(url + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -67,17 +67,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => {
 						console.log(res.status, "Status loagin");
 						if (res.status == 404) {
-							alert("error");
+							//alert("error");
+							setMessageError("User not exist");
+							setSpinner(false);
 							/* setError({ msg: "User not exist", status: true });
 							setSpinner(false); */
 						}
 						if (res.status == 401) {
 							/* setError({ msg: "Invalid username or password", status: true });
 							setSpinner(false); */
+							setSpinner(false);
 						}
 						if (res.status == 500) {
 							/* setError({ msg: "try again later", status: true });
 							setSpinner(false); */
+							setSpinner(false);
 						}
 						return res.json();
 					})

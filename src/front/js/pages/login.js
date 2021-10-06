@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
-
+import { Link } from "react-router-dom";
 import "../../styles/demo.scss";
 
 const Login = props => {
 	const { store, actions } = useContext(Context);
+	const [messageError, setMessageError] = useState("");
+	const [spinner, setSpinner] = useState(false);
 	const [user, setUser] = useState({
 		email: "",
 		password: ""
@@ -16,8 +18,14 @@ const Login = props => {
 
 	const handleSubmit = event => {
 		event.preventDefault();
-		actions.login(user, props);
+		setSpinner(true);
+		actions.login(user, props, setMessageError, setSpinner);
 	};
+
+	const changePathName = () => {
+		actions.setPathName("/signup");
+	};
+
 	useEffect(() => {
 		actions.setPathName("/login");
 	}, []);
@@ -38,6 +46,7 @@ const Login = props => {
 							value={user.email}
 							name="email"
 							placeholder="Email"
+							required
 						/>
 					</div>
 				</div>
@@ -53,17 +62,39 @@ const Login = props => {
 							value={user.password}
 							name="password"
 							placeholder="Password"
+							required
 						/>
 					</div>
 				</div>
 
-				<div className="form-group row">
-					<div className="col-sm-10">
+				{messageError != "" && (
+					<div className="alert hidden alert-danger" role="alert" id="error">
+						{messageError}
+					</div>
+				)}
+				{spinner == false ? (
+					<div className="form-group row">
+						<div className="col-sm-10">
+							<button type="submit" className="btn btn-primary">
+								Login
+							</button>
+						</div>
+					</div>
+				) : (
+					<div className="form-group row">
 						<button type="submit" className="btn btn-primary">
-							Login
+							<div className="spinner-border" role="status" />
 						</button>
 					</div>
-				</div>
+				)}
+
+				<p className="text-login">
+					Dont have an account yet?{" "}
+					<Link onClick={changePathName} to="/signup">
+						{" "}
+						click here
+					</Link>
+				</p>
 			</form>
 		</div>
 	);
