@@ -80,6 +80,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.status === 200) {
 					localStorage.setItem("token", data.access_token);
 					sessionStorage.setItem("user", data.user);
+					setStore({ user: data.user });
+					console.log(data.user, "*******");
 					setStore({ pathName: "/login" });
 					props.history.push("/users");
 				}

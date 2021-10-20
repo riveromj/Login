@@ -5,7 +5,7 @@ import { useContext } from "react";
 import "../../styles/navbar.scss";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-	console.log(store, "$$$$$");
+
 	return (
 		<nav className="navbar navbar-light bg-dark mb-3">
 			<Link to="/">
