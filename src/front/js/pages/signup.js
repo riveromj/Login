@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 import "../../styles/demo.scss";
 
@@ -35,6 +36,7 @@ export const Signup = props => {
 			});
 		}
 	};
+
 	useEffect(() => {
 		actions.setPathName("/signup");
 	}, []);
@@ -127,6 +129,9 @@ export const Signup = props => {
 					</div>
 				</div>
 			</form>
+			<p className="text-login">
+				I have an account... <Link to="/login"> click here</Link>
+			</p>
 		</div>
 	);
 };

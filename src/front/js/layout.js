@@ -13,6 +13,7 @@ import Login from "./pages/login";
 import { Context } from "./store/appContext";
 import { NavUser } from "./component/navUser";
 import ModalTest from "./component/modalTest";
+import { Users } from "./pages/Users";
 //create your first component
 const Layout = () => {
 	const { store, actions } = useContext(Context);
@@ -27,6 +28,7 @@ const Layout = () => {
 					{store.pathName == "/login" || store.pathName == "/signup" ? <NavUser /> : <Navbar />}
 					<Switch>
 						<Route exact path="/" component={Home} />
+						<Route exact path="/users" component={Users} />
 						<Route exact path="/signup" component={Signup} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/modalTest" component={ModalTest} />

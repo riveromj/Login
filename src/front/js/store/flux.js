@@ -30,10 +30,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.status === 200) {
 					const responseJson = await response.json();
 					localStorage.setItem("token", responseJson.access_token);
-					props.history.push("/");
+					props.history.push("/users");
 				}
 			},
-		/* 	registerUser: user => {
+			/* 	registerUser: user => {
 				console.log(user, " en el registro");
 				const new_user = {
 					name: user.name,
@@ -81,9 +81,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("token", data.access_token);
 					sessionStorage.setItem("user", data.user);
 					setStore({ pathName: "/login" });
-					props.history.push("/");
+					props.history.push("/users");
 				}
-			},
+			}
 			/* login2: (user, props, setMessageError, setSpinner) => {
 				fetch(url + "/api/login", {
 					method: "POST",
