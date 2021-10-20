@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import "../../styles/demo.scss";
+import "../../styles/login.scss";
 
 const Login = props => {
 	const { store, actions } = useContext(Context);
@@ -32,7 +32,7 @@ const Login = props => {
 
 	return (
 		<div className="container">
-			<h1 className="text-align-center">Login</h1>
+			<h1 className="text-align-center title">Login</h1>
 			<form onChange={handleChange} onSubmit={handleSubmit}>
 				<div className="form-group row">
 					<label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
@@ -73,24 +73,26 @@ const Login = props => {
 					</div>
 				)}
 				{spinner == false ? (
-					<div className="form-group row">
-						<div className="col-sm-10">
-							<button type="submit" className="btn btn-primary">
-								Login
+					<div className="form-group row center">
+						<div className="col-12">
+							<button type="submit" className="btn btn-login">
+								Send
 							</button>
 						</div>
 					</div>
 				) : (
-					<div className="form-group row">
-						<button type="submit" className="btn btn-primary">
-							<div className="spinner-border" role="status" />
-						</button>
+					<div className="form-group row center">
+						<div className="col-12">
+							<div className="spinner-border text-info  m-5" role="status">
+								<span className="sr-only" />
+							</div>
+						</div>
 					</div>
 				)}
 
 				<p className="text-login">
 					Dont have an account yet?{" "}
-					<Link onClick={changePathName} to="/signup">
+					<Link className="text-link" onClick={changePathName} to="/signup">
 						{" "}
 						click here
 					</Link>
