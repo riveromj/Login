@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import { useContext } from "react";
 import "../../styles/navbar.scss";
 export const Navbar = () => {
-	const { store, actions } = useContext(Context);
+	const { store } = useContext(Context);
 
 	return (
 		<nav className="navbar navbar-light bg-dark mb-3">

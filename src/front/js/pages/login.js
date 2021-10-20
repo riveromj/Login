@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "../../styles/login.scss";
 
 const Login = props => {
-	const { store, actions } = useContext(Context);
+	const { actions } = useContext(Context);
 	const [messageError, setMessageError] = useState("");
 	const [spinner, setSpinner] = useState(false);
 	const [user, setUser] = useState({

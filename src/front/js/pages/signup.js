@@ -19,7 +19,6 @@ export const Signup = props => {
 	};
 
 	const handleSubmit = event => {
-		console.log(user, "userrrrr");
 		event.preventDefault();
 		if (user.password != user.cpassword) {
 			console.log("contraseña no coinciden");

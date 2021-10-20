@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 export const NavUser = () => {
 	let history = useHistory();
 	const { store, actions } = useContext(Context);
-	console.log(store.user, "$$$$$");
 
 	const handleLogout = () => {
 		localStorage.removeItem("token");

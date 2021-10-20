@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 export const Footer = () => (
 	<nav className="navbar fixed-bottom navbar-dark bg-dark text-center text-white">

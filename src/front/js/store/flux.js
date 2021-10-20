@@ -30,7 +30,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (response.status === 200) {
 					const data = await response.json();
 					localStorage.setItem("token", data.access_token);
-					console.log(new_user, "Usuario registrado");
 					setStore({ user: new_user.email });
 					setStore({ pathName: "/signup" });
 					props.history.push("/users");
@@ -71,7 +70,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log(error));
 			}, */
-			login: async (user, props, setMessageError, setSpinner) => {
+			login: async (user, props) => {
 				const response = await fetch(url + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
