@@ -6,7 +6,8 @@ body{
     background-color: #333B40;
     color: #7FDEEA;
     border: 2px solid #7FDEEA;
-    font-size: 1.2rem
+    font-size: 1.2rem;
+    width: 15%;
   }
   .btn-signup:hover{
     background-color:  #7FDEEA;
@@ -16,13 +17,13 @@ body{
   
   .center{
       margin: auto;
-      text-align: center;
+      text-align: end;
   }
   .title{
     color: #333B40;
     text-align: center;
     margin: auto;
-    padding: 1.8rem;
+    padding: 2.5rem;
   }
   .text-link{
     color:#7FDEEA;
