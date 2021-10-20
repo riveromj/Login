@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-import "../../styles/demo.scss";
+import "../../styles/signup.scss";
 
 export const Signup = props => {
 	const { store, actions } = useContext(Context);
@@ -43,7 +43,7 @@ export const Signup = props => {
 
 	return (
 		<div className="container">
-			<h1 className="text-align-center">Sign UP</h1>
+			<h1 className="text-align-center title">Sign UP</h1>
 			<form onChange={handleChange} onSubmit={handleSubmit}>
 				<div className="form-group row">
 					<label htmlFor="inputName3" className="col-sm-2 col-form-label">
@@ -121,16 +121,20 @@ export const Signup = props => {
 					</div>
 				</div>
 
-				<div className="form-group row">
-					<div className="col-sm-10">
-						<button type="submit" className="btn btn-primary">
-							Sign in
+				<div className="form-group row center">
+					<div className="col-12">
+						<button type="submit" className="btn btn-signup">
+							Send
 						</button>
 					</div>
 				</div>
 			</form>
-			<p className="text-login">
-				I have an account... <Link to="/login"> click here</Link>
+			<p className="text-signup">
+				I have an account...{" "}
+				<Link className="text-link" to="/login">
+					{" "}
+					click here
+				</Link>
 			</p>
 		</div>
 	);

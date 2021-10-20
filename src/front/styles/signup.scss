@@ -1,0 +1,39 @@
+body{
+    color:#333B40;
+    font-size: 1.2rem;
+  }
+  .btn-signup{
+    background-color: #333B40;
+    color: #7FDEEA;
+    border: 2px solid #7FDEEA;
+    font-size: 1.2rem
+  }
+  .btn-signup:hover{
+    background-color:  #7FDEEA;
+    color: #333B40;
+    border: 2px solid #333B40;
+  }
+  
+  .center{
+      margin: auto;
+      text-align: center;
+  }
+  .title{
+    color: #333B40;
+    text-align: center;
+    margin: auto;
+    padding: 1.8rem;
+  }
+  .text-link{
+    color:#7FDEEA;
+  }
+  .text-signup{
+    font-size: 0.8rem
+  }
+  .form-control{
+    font-size:1.2rem;
+    border-radius: 0;
+    border: 0px ;
+    border-bottom: 1px solid #333B40;
+  
+  }
