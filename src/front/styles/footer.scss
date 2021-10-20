@@ -1,4 +1,16 @@
-.footer{
-    position: fixed;
-    bottom: 0;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+
+.navbar > .container, .navbar > .container-fluid {
+    display: block;
+}
+.container {
+    display: block;
+    justify-content: center;
 }

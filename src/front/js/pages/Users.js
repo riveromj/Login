@@ -1,17 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
-import { Link } from "react-router-dom";
 import { ModalTest } from "../component/modalTest.js";
 
 export const Users = () => {
-	const { store, actions } = useContext(Context);
-	const [state, setState] = useState({
+	const { store } = useContext(Context);
+	/* 	const [state, setState] = useState({
 		showModal: false
 	});
 	const handleShow = () => {
 		setState({ showModal: true });
-	};
+	}; */
 	return (
 		<>
 			<div className="text-center mt-5">
@@ -24,7 +23,7 @@ export const Users = () => {
 				<div className="col-2 mx-auto" />
 				<div className="col-2 mx-auto" />
 			</div>
-			<div>
+			{/* 	<div>
 				<i
 					onClick={() => {
 						handleShow();
@@ -32,7 +31,7 @@ export const Users = () => {
 					className="far fa-trash-alt trash"
 				/>
 			</div>
-			<ModalTest show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<ModalTest show={state.showModal} onClose={() => setState({ showModal: false })} /> */}
 		</>
 	);
 };

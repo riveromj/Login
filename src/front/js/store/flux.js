@@ -28,8 +28,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				});
 				if (response.status === 200) {
-					const responseJson = await response.json();
-					localStorage.setItem("token", responseJson.access_token);
+					const data = await response.json();
+					localStorage.setItem("token", data.access_token);
+					console.log(new_user, "Usuario registrado");
+					setStore({ user: new_user.email });
+					setStore({ pathName: "/signup" });
 					props.history.push("/users");
 				}
 			},

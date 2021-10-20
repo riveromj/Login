@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 
 export const Footer = () => (
-	<footer className="bg-dark text-center text-white footer">
+	<nav className="navbar fixed-bottom navbar-dark bg-dark text-center text-white">
 		<div className="container p-4 pb-0">
-			<section className="mb-4">
+			<section className="mb-4 text-center">
 				{/* <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-					<i className="fab fa-facebook-f" />
-				</a> */}
+			<i className="fab fa-facebook-f" />
+		</a> */}
 
 				{/* <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-					<i className="fab fa-twitter" />
-				</a> */}
+			<i className="fab fa-twitter" />
+		</a> */}
 
 				{/* <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-					<i className="fab fa-google" />
-				</a> */}
+			<i className="fab fa-google" />
+		</a> */}
 				{/* 
-				<a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
-					<i className="fab fa-instagram" />
-				</a> */}
+		<a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+			<i className="fab fa-instagram" />
+		</a> */}
 
 				<a
 					className="btn btn-outline-light btn-floating m-1"
@@ -33,5 +33,5 @@ export const Footer = () => (
 			</section>
 			<div className="text-center p-3">© 2021 Copyright: @riveromj</div>
 		</div>
-	</footer>
+	</nav>
 );
