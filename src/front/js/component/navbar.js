@@ -10,7 +10,7 @@ export const Navbar = () => {
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1">React Login/Signup</span>
 			</Link>
-			<div className="ml-auto">
+			<div className="ml-auto m-2">
 				<span>{store.user}</span>
 				<Link to="/login">
 					<button className="btn btn-primary">Login</button>

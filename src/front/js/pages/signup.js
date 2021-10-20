@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-
+import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 import "../../styles/demo.scss";
 
-export const Signup = () => {
+export const Signup = props => {
 	const { store, actions } = useContext(Context);
 	const [user, setUser] = useState({
 		name: "",
@@ -18,13 +18,14 @@ export const Signup = () => {
 	};
 
 	const handleSubmit = event => {
+		console.log(user, "userrrrr");
 		event.preventDefault();
 		if (user.password != user.cpassword) {
 			console.log("contraseña no coinciden");
 			alert("The passwords must be the same");
 		} else {
 			console.log("registrar al usuario");
-			actions.registerUser(user);
+			actions.signup(user, props);
 			setUser({
 				name: "",
 				surname: "",
@@ -33,9 +34,6 @@ export const Signup = () => {
 				cpassword: ""
 			});
 		}
-		//hacer un condicional
-
-		//actions.registerUser(user, props, setError, setSpinner);
 	};
 	useEffect(() => {
 		actions.setPathName("/signup");
@@ -131,4 +129,7 @@ export const Signup = () => {
 			</form>
 		</div>
 	);
+};
+Signup.propTypes = {
+	props: PropTypes.any
 };

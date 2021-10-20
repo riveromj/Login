@@ -10,19 +10,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setPathName: path => {
 				setStore({ pathName: path });
 			},
-			///get user
-			getUser: () => {
-				//const token = localStorage.getItem("token");
-				fetch(url + "/api/users", {
+			///get all user
+			getAllUser: async () => {
+				const response = await fetch(url + "/api/users", {
 					method: "GET"
 					//headers: { Authorization: " Bearer " + token }
-				})
-					.then(res => res.json())
-					.then(data => {
-						setStore({ users: data });
-					});
+				});
+				const data = await response.json();
+				setStore({ users: data });
 			},
-			registerUser: user => {
+			signup: async (new_user, props) => {
+				const response = await fetch(url + "/api/register/user", {
+					method: "POST",
+					body: JSON.stringify(new_user),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+				if (response.status === 200) {
+					const responseJson = await response.json();
+					localStorage.setItem("token", responseJson.access_token);
+					props.history.push("/");
+				}
+			},
+		/* 	registerUser: user => {
+				console.log(user, " en el registro");
 				const new_user = {
 					name: user.name,
 					surname: user.surname,
@@ -39,24 +51,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => {
 						if (res.status == 409) {
 							console.log(res, "regitro de usuario");
-							/* setError({ msg: "User Name or email exist", status: true });
+							setError({ msg: "User Name or email exist", status: true });
 							setSpinner(false);
-							return; */
+							return;
 						}
 						if (res.status == 500) {
-							/* setError({ msg: "try again later", status: true });
+							setError({ msg: "try again later", status: true });
 							setSpinner(false);
-							return; */
+							return;
 						}
 						return res.json();
 					})
 					.then(data => {
-						//props.history.push("/");
+					props.history.push("/");
 						console.log(data);
 					})
 					.catch(error => console.log(error));
+			}, */
+			login: async (user, props, setMessageError, setSpinner) => {
+				const response = await fetch(url + "/api/login", {
+					method: "POST",
+					body: JSON.stringify(user),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				});
+				const data = await response.json();
+				if (response.status === 200) {
+					localStorage.setItem("token", data.access_token);
+					sessionStorage.setItem("user", data.user);
+					setStore({ pathName: "/login" });
+					props.history.push("/");
+				}
 			},
-			login: (user, props, setMessageError, setSpinner) => {
+			/* login2: (user, props, setMessageError, setSpinner) => {
 				fetch(url + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -67,20 +95,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => {
 						console.log(res.status, "Status loagin");
 						if (res.status == 404) {
-							//alert("error");
+							alert("error");
 							setMessageError("User not exist");
 							setSpinner(false);
-							/* setError({ msg: "User not exist", status: true });
-							setSpinner(false); */
+							setError({ msg: "User not exist", status: true });
+							setSpinner(false);
 						}
 						if (res.status == 401) {
-							/* setError({ msg: "Invalid username or password", status: true });
-							setSpinner(false); */
+							setError({ msg: "Invalid username or password", status: true });
+							setSpinner(false);
 							setSpinner(false);
 						}
 						if (res.status == 500) {
-							/* setError({ msg: "try again later", status: true });
-							setSpinner(false); */
+							setError({ msg: "try again later", status: true });
+							setSpinner(false); 
 							setSpinner(false);
 						}
 						return res.json();
@@ -93,12 +121,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => {
 						console.log(error, "ESTOY EN CATCH");
-						/* setError({ msg: "serve error try later", status: true });
-						setSpinner(false); */
+						setError({ msg: "serve error try later", status: true });
+						setSpinner(false);
 					});
-			}
+			} */
 		}
 	};
 };
-
 export default getState;

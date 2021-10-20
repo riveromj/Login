@@ -22,7 +22,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			state.actions.getUser();
+			state.actions.getAllUser();
 		}, []);
 
 		return (
