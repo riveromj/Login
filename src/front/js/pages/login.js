@@ -68,7 +68,7 @@ const Login = props => {
 				</div>
 
 				{messageError != "" && (
-					<div className="alert hidden alert-danger" role="alert" id="error">
+					<div className="alert hidden alert-danger center-error" role="alert" id="error">
 						{messageError}
 					</div>
 				)}

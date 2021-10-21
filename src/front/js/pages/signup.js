@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import "../../styles/signup.scss";
 
 export const Signup = props => {
-	const { store, actions } = useContext(Context);
-	const [user, setUser] = useState({
+	const { actions } = useContext(Context);
+º	const [user, setUser] = useState({
 		name: "",
 		surname: "",
 		email: "",

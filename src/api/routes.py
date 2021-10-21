@@ -42,7 +42,7 @@ def handle_login():
         return "user not exist or invalid password", 404
     validate_password = compare_pass(body['password'], user.password_bcrypt())
     if (validate_password == False):
-        return "password incorrect", 401
+        return ({"message":"password incorrect"}), 401
     access_token = create_access_token(identity=user.email)
     return jsonify({"access_token": access_token, "user":body['email']}),200
     

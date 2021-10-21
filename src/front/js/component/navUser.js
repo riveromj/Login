@@ -12,6 +12,7 @@ export const NavUser = () => {
 	const handleLogout = () => {
 		localStorage.removeItem("token");
 		actions.setPathName("/");
+		actions.setUser("");
 		history.push("/");
 	};
 	return (

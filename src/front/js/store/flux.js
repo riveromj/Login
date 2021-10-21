@@ -10,6 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setPathName: path => {
 				setStore({ pathName: path });
 			},
+			setUser: user => {
+				setStore({ user: user });
+			},
 			///get all user
 			getAllUser: async () => {
 				const response = await fetch(url + "/api/users", {
@@ -70,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log(error));
 			}, */
-			login: async (user, props) => {
+			login: async (user, props, setMessageError, setSpinner) => {
 				const response = await fetch(url + "/api/login", {
 					method: "POST",
 					body: JSON.stringify(user),
@@ -79,6 +82,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				});
 				const data = await response.json();
+
+				if (response.status === 401) {
+					setMessageError("User o Password invalid");
+					setSpinner(false);
+				}
 				if (response.status === 200) {
 					localStorage.setItem("token", data.access_token);
 					sessionStorage.setItem("user", data.user);
