@@ -7,7 +7,7 @@ import "../../styles/signup.scss";
 
 export const Signup = props => {
 	const { actions } = useContext(Context);
-º	const [user, setUser] = useState({
+	const [user, setUser] = useState({
 		name: "",
 		surname: "",
 		email: "",
